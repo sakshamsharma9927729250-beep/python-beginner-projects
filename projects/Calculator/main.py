@@ -6,11 +6,15 @@ import time
 
 
 def addition():
-    """This function asks the user to enter a series of numbers separated by spaces.
-    It then adds all the numbers together and returns the result."""
-    nums = list(map(int, input("Enter all numbers separated by space: ").split()))
-    return sum(nums)
+    """Add a series of numbers entered by the user."""
+    nums = input("Enter all numbers separated by space: ").split()
 
+    if not nums:
+        print("Please enter at least one number.")
+        return None
+
+    nums = list(map(int, nums))
+    return sum(nums)
 
 def subtraction():
     """This function asks the user to enter two numbers.
@@ -22,15 +26,20 @@ def subtraction():
 
 
 def multiplication():
-    """Function asks user to enter a series of numbers separated by spaces.
-    Then multiply all the numbers together and returns the result."""
+    """Multiply a series of numbers entered by the user."""
+    nums = input("Enter all numbers separated by space: ").split()
 
-    nums = list(map(int, input("Enter all numbers separated by space: ").split()))
+    if not nums:
+        print("Please enter at least one number.")
+        return None
+
+    nums = list(map(int, nums))
+
     result = 1
     for num in nums:
         result *= num
-    return result
 
+    return result
 
 def division():
     """Function divide two numbers"""
@@ -45,12 +54,15 @@ def division():
 
 
 def average():
-    """This function takes space separated number series and then convert it to a list.
-    Then calculates the average of that list of numbers."""
+    """Calculate the average of a series of numbers entered by the user."""
+    nums = input("Enter all numbers separated by space: ").split()
 
-    nums = list(map(int, input("Enter all numbers separated by space: ").split()))
+    if not nums:
+        print("Please enter at least one number.")
+        return None
+
+    nums = list(map(int, nums))
     return sum(nums) / len(nums)
-
 
 def factorial(num):
     """
@@ -138,6 +150,7 @@ def binomial(num):
 
 
 c = 0
+
 while c != "-1":
     print("Enter '1' for addition")
     print("Enter '2' for subtraction")
@@ -146,40 +159,64 @@ while c != "-1":
     print("Enter '5' for average")
     print("Enter '6' for factorial")
     print("Enter '7' for complex arithmetic")
-    print("ENter '8'  for binomial")
+    print("Enter '8' for binomial")
     print("Enter '-1' to exit.\n")
 
     c = input("Your choice is: ")
+
     if c == "1":
         res = addition()
+
     elif c == "2":
         res = subtraction()
+
     elif c == "3":
         res = multiplication()
+
     elif c == "4":
         res = division()
+
         if res == "Invalid entry":
             continue
+
     elif c == "5":
         res = average()
+
     elif c == "6":
-        num = int(input("enter the number: "))
+        num = int(input("Enter the number: "))
+
         if num < 0:
             print("Invalid entry")
             continue
+
         res = factorial(num)
+
     elif c == "7":
         res = complex_arithmetic()
+
     elif c == "8":
-        num = list(map(int, input("Enter the number separated by space").split()))
+        num = list(
+            map(
+                int,
+                input("Enter the number separated by space: ").split()
+            )
+        )
+
         if num[0] < num[1]:
             print("Invalid entry")
             continue
+
         res = binomial(num)
+
     elif c == "-1":
         print("Thank you for using the calculator!")
         break
+
     else:
         print("Sorry, invalid option!")
-    print(f"The answer is {res}")
+        continue
+
+    if res is not None:
+        print(f"The answer is {res}")
+
     time.sleep(2)
